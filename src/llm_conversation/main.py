@@ -21,20 +21,6 @@ class Conversation:
         self.context: list[str] = []
         self.history: list[Response] = []
 
-        self.reasoning_level: str = None
-
-
-    def set_reasoning_level(self, level: str):
-
-        VALID_LEVELS = ('low', 'medium', 'high')
-
-        if level not in VALID_LEVELS:
-            raise ValueError(f'Invalid level. Valid options are {VALID_LEVELS}!')
-
-        self.reasoning_level = level
-
-        return
-
 
     def set_overall_prompt(self, text: str):
 
@@ -78,7 +64,6 @@ class Conversation:
 
         result = {}
 
-        result['reasoning_level'] = self.reasoning_level
         result['overall_prompt'] = self.overall_prompt  # str.
         result['context'] = self.context  # List of str.
         result['history'] = [{'role': h.role, 'text': h.text} for h in self.history]
@@ -92,7 +77,6 @@ class Conversation:
         '''
 
         NEEDED_FIELDS = (
-            'reasoning_level',
             'overall_prompt',
             'context',
             'history')
@@ -100,7 +84,6 @@ class Conversation:
         if not set(NEEDED_FIELDS) == set(data.keys()):
             raise ValueError('Input "data" is unaligned to needed keys!')
 
-        self.reasoning_level = data['reasoning_level']
         self.overall_prompt = data['overall_prompt']
         self.context = data['context']
         self.history = [Response(role=h['role'], text=h['text']) for h in data['history']]

@@ -1,6 +1,6 @@
 [project]
 name = "llm_conversation"  # The pip install <name>.
-version = "0.1.0"
+version = "0.2.0"
 description = "A simple creator for conversations that are designed to be ingested by LLMs."
 readme = "README.md"
 authors = [{ name = "Eric Apgar" }]
