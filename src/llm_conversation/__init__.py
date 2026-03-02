@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 
 
 def __getattr__(name: str):
-    if name == 'item_1':
+    if name == 'Conversation':
         from .main import Conversation
         globals()[name] = Conversation  # Recommended for smoother checking.
         return Conversation
