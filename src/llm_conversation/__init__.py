@@ -10,26 +10,20 @@ from typing import TYPE_CHECKING
 
 
 # Public, supported “namespaces”.
-__all__ = ("item_1", "item_2")
+__all__ = ("Conversation")
 
 
 # Helps IDEs/type-checkers know these exist and what they are,
 # without importing them at runtime.
 if TYPE_CHECKING:
-    from .item_folder.item_1_file import item_1
-    from .item_folder.item_2_file import item_2
+    from .main import Conversation
 
 
 def __getattr__(name: str):
     if name == 'item_1':
-        from .item_folder.item_1_file import item_1
-        globals()[name] = item_1  # Recommended for smoother checking.
-        return item_1
-
-    if name == 'item_2':
-        from .item_folder.item_2_file import item_2
-        globals()[name] = item_2  # Recommended for smoother checking.
-        return item_2
+        from .main import Conversation
+        globals()[name] = Conversation  # Recommended for smoother checking.
+        return Conversation
 
     raise AttributeError(f'Module "<lib name>" has no attribute {name!r}!')  # TODO: Edit your library name.
 
